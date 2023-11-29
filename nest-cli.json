@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/event-driven/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/event-driven/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/event-driven",
+  "projects": {
+    "event-driven": {
+      "type": "application",
+      "root": "apps/event-driven",
+      "entryFile": "main",
+      "sourceRoot": "apps/event-driven/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/event-driven/tsconfig.app.json"
+      }
+    },
+    "kafka": {
+      "type": "application",
+      "root": "apps/kafka",
+      "entryFile": "main",
+      "sourceRoot": "apps/kafka/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/kafka/tsconfig.app.json"
+      }
+    }
+  }
+}
