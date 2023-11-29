@@ -1,16 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-
+import { ClientKafka } from '@nestjs/microservices';
+import { GreetingDTO } from './app.dto';
 @Injectable()
 export class AppService {
-  constructor(@Inject('GREETING_SERVICE') private client: ClientProxy) {}
-  async publishEvent() {
+  constructor(@Inject('GREETING_SERVICE') private clientKafka: ClientKafka) {}
+
+  async publishEvent(payload: GreetingDTO) {
     try {
-      await this.client.emit('book_created', {
-        bookName: 'The Way Of Kings',
-        author: 'Brandon Sanderson',
-      });
-      return 'send event';
+      await this.clientKafka.emit('greeting', payload);
+      console.log(`send greeting:${JSON.stringify(payload)}`);
+      return payload;
     } catch (error) {
       console.log(JSON.stringify(error));
     }

@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { GreetingDTO } from './app.dto';
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  publishEvent() {
-    console.log('evento a enviar desde principal');
-    return this.appService.publishEvent();
+  @Post()
+  async publishEvent(@Body() payload: GreetingDTO) {
+    return this.appService.publishEvent(payload);
   }
 }

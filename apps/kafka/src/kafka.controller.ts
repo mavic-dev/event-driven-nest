@@ -3,8 +3,8 @@ import { EventPattern } from '@nestjs/microservices';
 
 @Controller()
 export class KafkaController {
-  @EventPattern('book_created')
+  @EventPattern('greeting')
   handleGreetingEvent(data: any) {
-    console.log('evento entrante', data);
+    console.log('event received', data);
   }
 }

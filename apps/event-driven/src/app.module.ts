@@ -1,18 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-
+import { ClientsModule } from '@nestjs/microservices';
+import { KAFKA_OPTIONS } from 'apps/kafka/src/kafka.options';
 @Module({
   imports: [
     ClientsModule.register([
       {
         name: 'GREETING_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          host: 'localhost',
-          port: 3002,
-        },
+        ...KAFKA_OPTIONS,
       },
     ]),
   ],
