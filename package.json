@@ -11,6 +11,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:kafka": "nest start kafka --watch",
+    "start:both": "start npm run start:dev && start npm run start:kafka",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/event-driven/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
